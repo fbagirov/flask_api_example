@@ -49,7 +49,7 @@ leads = [
 
 @app.route('/', methods=['GET'])
 def home():
-    return "<p>A prorotype for a customer data lead API</p>"
+    return "A prorotype for a customer data lead API"
 
 @app.route('/api/v1/leads/all', methods=['GET'])
 def api_all():
