@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request 
+# from thisapp.wsgi import application
+import sys
 
 app = Flask(__name__) # instantiating Flask application object
 #app.config["DEBUG"] = True # starts the debugger
@@ -48,7 +50,7 @@ leads = [
 ]
 
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def home():
     return "A prorotype for a customer data lead API"
 
@@ -60,7 +62,7 @@ def api_all():
 def api_id(id):
 	lead = [lead for lead in leads if lead['id'] == id]
 	if len(lead) == 0:
-		abort(404)
+		sys.exit(404)
 	return jsonify({'lead': lead[0]})
  
 	# Use the jsonify function from Flask to convert our list of
@@ -73,3 +75,4 @@ if __name__ == '__main__':
     # Engine, a webserver process such as Gunicorn will serve the app. This
     # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True) # a method that runs the server
+# [END gae_python37_app]
