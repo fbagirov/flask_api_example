@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request 
 
 app = Flask(__name__) # instantiating Flask application object
-app.config["DEBUG"] = True # starts the debugger
+#app.config["DEBUG"] = True # starts the debugger
+app.config["DEBUG"] = False # comment the line above and switch to False when deploying to production
 
 leads = [
   {
@@ -67,4 +68,8 @@ def api_id(id):
 #	return jsonify(results)
 
 
-app.run() # a method that runs the server
+if __name__ == '__main__':
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
+    app.run(host='127.0.0.1', port=8080, debug=True) # a method that runs the server
