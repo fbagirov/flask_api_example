@@ -1,7 +1,12 @@
 from flask import Flask, jsonify, request 
 # from thisapp.wsgi import application
 import sys
-
+try:
+  import googleclouddebugger
+  googleclouddebugger.enable()
+except ImportError:
+  pass
+  
 app = Flask(__name__) # instantiating Flask application object
 #app.config["DEBUG"] = True # starts the debugger
 app.config["DEBUG"] = False # comment the line above and switch to False when deploying to production
