@@ -1,15 +1,12 @@
-from flask import Flask, jsonify, request 
-# from thisapp.wsgi import application
-import sys
-try:
-  import googleclouddebugger
-  googleclouddebugger.enable()
-except ImportError:
-  pass
-  
-app = Flask(__name__) # instantiating Flask application object
-#app.config["DEBUG"] = True # starts the debugger
-app.config["DEBUG"] = False # comment the line above and switch to False when deploying to production
+
+
+# [START gae_python37_app]
+from flask import Flask, jsonify, request
+
+
+# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
+# called `app` in `main.py`.
+app = Flask(__name__)
 
 leads = [
   {
@@ -55,9 +52,11 @@ leads = [
 ]
 
 
+
 @app.route('/')
 def home():
-    return "A prorotype for a customer data lead API"
+    """Return a friendly HTTP greeting."""
+    return 'A prorotype for a customer data lead API'
 
 @app.route('/api/v1/leads/all', methods=['GET'])
 def api_all():
@@ -69,15 +68,10 @@ def api_id(id):
 	if len(lead) == 0:
 		sys.exit(404)
 	return jsonify({'lead': lead[0]})
- 
-	# Use the jsonify function from Flask to convert our list of
-	# Python dictionaries to the JSON format.
-#	return jsonify(results)
-
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
     # Engine, a webserver process such as Gunicorn will serve the app. This
     # can be configured by adding an `entrypoint` to app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True) # a method that runs the server
+    app.run(host='127.0.0.1', port=8080, debug=True)
 # [END gae_python37_app]

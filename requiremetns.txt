@@ -1,4 +1,0 @@
-Flask==0.10.1
-google-cloud-storage
-google-python-cloud-debugger
-gunicorn
