@@ -56,7 +56,7 @@ leads = [
 @app.route('/')
 def home():
     """Return a friendly HTTP greeting."""
-    return 'A prorotype for a customer data lead API'
+    return 'A prorotype for a customer data lead API using Flask'
 
 @app.route('/api/v1/leads/all', methods=['GET'])
 def api_all():
